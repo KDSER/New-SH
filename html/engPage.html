@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <script src="../script/api.js"></script>
+    <script src="../script/jquery-2.0.0.js"></script>
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.3.min.css" />
+    <link rel="stylesheet" href="../css/api.css" />
+    <script src="../script/jquery.mobile-1.4.3.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            if(localStorage.getItem('maxScore') == null){
+                localStorage.setItem('maxScore',0);
+            }
+            if(localStorage.getItem('secScore') == null){
+                localStorage.setItem('secScore',0);
+            }
+            if(localStorage.getItem('thiScore') == null){
+                localStorage.setItem('thiScore',0);
+            }
+
+
+            $("#maxScore").text(localStorage.getItem('maxScore'));
+            $("#myScore").text(localStorage.getItem('myScore'));
+            var myScore =  parseInt(localStorage.getItem('myScore'));
+            var maxScore = parseInt(localStorage.getItem('maxScore'));
+            var secScore = parseInt(localStorage.getItem('secScore'));
+            var thiScore = parseInt(localStorage.getItem('thiScore'));
+
+            if(  maxScore < myScore){
+                $("#_New").css('display','inline');
+                localStorage.setItem('thiScore',localStorage.getItem('secScore'));
+                localStorage.setItem('secScore',maxScore);
+
+                $("#maxScore").text(localStorage.getItem('myScore'));
+                localStorage.setItem('maxScore',$('#maxScore').text());
+
+
+            }
+            else if(myScore==maxScore)
+            {
+
+            }
+            else if( secScore < myScore){
+                localStorage.setItem('thiScore',localStorage.getItem('secScore'));
+                localStorage.setItem('secScore',myScore);
+            }
+
+            else if( thiScore < myScore && myScore!=secScore){
+                localStorage.setItem('thiScore',myScore);
+            }
+
+            $("#myRank").css('width',$("#showScore").css('width'));
+            $("#rank").click(function(){
+
+                if( $("#myRank").css('display') == "none")
+                {
+                    $("#myRank").css('display','inline');
+
+                    $("#First").text(localStorage.getItem('maxScore'));
+                    $("#Second").text(localStorage.getItem('secScore'));
+                    $("#Third").text(localStorage.getItem('thiScore'));
+                }
+               else
+                {
+                    $("#myRank").css('display','none');
+                }
+
+            });
+
+
+        })
+
+
+
+    </script>
+    <style type="text/css">
+        #page1{
+            background: url("../image/bgp_end.jpg") no-repeat fixed;
+            background-size:cover;
+        }
+        #head{
+            padding-top: 20px;
+            text-align: center;
+        }
+        #head span{
+            margin-top: 10px;
+            font-size: 200%;
+            font-weight: bold;
+        }
+        #showScore{
+            margin-top: 19px;
+            background: #EEEEEE;
+            border-radius: 20px;
+            padding: 20px 0;
+        }
+
+        #showScore span{
+            text-align: center;
+            display: block;
+            line-height: 40px;
+        }
+        #_footer{
+            padding-top: 50px;
+            padding-bottom:20px;
+        }
+        #_footer img{
+            width: 70px;
+            height: 70px;
+            clear: both;
+            display: block;
+            margin:auto;
+        }
+        .score{
+            font-weight: bolder;
+            font-size: 200%;
+            color: #F7F7F7;
+            padding-left: 200px;
+            line-height: 10px;
+            padding-top: 28px;
+        }
+
+        ._nowscore{
+            height: 68px;
+            font-weight: bolder;
+            font-size: 200%;
+            color: #F7F7F7;
+            background: url("../image/nowScore.png") no-repeat;
+            background-position: center;
+        }
+        ._bestscore{
+            height: 68px;
+            font-weight: bolder;
+            font-size: 200%;
+            color: #F7F7F7;
+            background: url("../image/bestScore.png") no-repeat;
+            background-position: center;
+        }
+
+        #myScore{
+            padding-top: 20px;
+            padding-left: 150px;
+        }
+        #maxScore{
+            padding-top: 20px;
+            padding-left: 150px;
+        }
+        #New{
+            z-index: 2;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left:25% ;
+            top:25%;
+        }
+        #New img{
+            display: none;
+            width: 100px;
+            height: 100px;
+
+        }
+        #myRank{
+            display: none;
+            border-radius: 20px;
+            z-index: 3;
+            position: absolute;
+            padding-right: 0;
+            padding-bottom: 15px;
+            top:22%;
+            background: #F9F9B0;
+            padding-top: 15px;
+        }
+
+
+        .outrank1{
+            height: 69px;
+            background: url("../image/yelloBg_1.png") no-repeat;
+            background-position: center;
+        }
+        .outrank2{
+            height: 69px;
+            background: url("../image/yelloBg_2.png") no-repeat;
+            background-position: center;
+        }
+        .outrank3{
+            height: 69px;
+            background: url("../image/yelloBg_3.png") no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="page1">
+    <div data-role="content">
+        <div id="head">
+           <img src="../image/gv_title.png">
+        </div>
+        <div id="showScore">
+            <div class="_nowscore">
+                <span id="myScore"></span>
+            </div>
+            <div class="_bestscore">
+                <span id="maxScore"></span>
+            </div>
+        </div>
+        <div id="_footer">
+            <div class="ui-grid-b">
+                <div class="ui-block-a" id="backHome" onclick="tz_index()">
+                    <img src="../image/backHome.png">
+                </div>
+                <div class="ui-block-b" id="rank">
+                    <img src="../image/rank.png">
+                </div>
+                <div class="ui-block-c" id="reTry" onclick="tz_game()">
+                    <img src="../image/reTry.png">
+                </div>
+            </div>
+        </div>
+        <div id="New"><img src="../image/new.png" id="_New"></div>
+        <div id="myRank">
+            <div class="outrank1">
+                <span id="First" class="score">0</span>
+            </div>
+            <div class="outrank2">
+                <span id="Second" class="score">0</span>
+            </div>
+            <div class="outrank3">
+                <span id="Third" class="score">0</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    function tz_index(){
+        api.openWin({
+            name: 'fp',
+            url: '.././index.html',
+            reload:true,
+            animation:
+            {
+                type:'suck'
+            }
+        });
+    }
+    function tz_game(){
+        api.openWin({
+            name: 'game',
+            url: '../html/index.html',
+            reload:true,
+            animation:
+            {
+                type:'fade'
+            }
+        });
+    }
+</script>

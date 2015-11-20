@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <script type="text/javascript" src="../script/action.js"></script>
+    <script src="../script/jquery-2.0.0.js"></script>
+    <script src="../script/jquery_ui.js"></script>
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script>
+        $(function(){
+            var canvas = document.getElementById("myCanvas");
+            canvas.width=document.documentElement.clientWidth;
+            canvas.height=document.documentElement.clientHeight;
+            $("#perfect").css('left',document.documentElement.clientWidth/2 - 86 +'px');
+        })
+    </script>
+    <style type="text/css">
+        #myCanvas{
+            background:url("../image/bgp1.png") no-repeat fixed;
+            -moz-background-size:cover;
+            -ms-background-size:cover;
+            -webkit-background-size:cover;
+            background-size:cover;
+            background-repeat:no-repeat;
+        }
+        body{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        #perfect{
+              z-index: 1;
+              position: absolute;
+              margin-top: -360px;
+              opacity: 0;
+          }
+        .ico {
+            position: absolute;
+            margin-top: -182px;
+            z-index: 1;
+            width:15px;
+            height:16px;
+            background: url("../image/walk.png");
+            background-position:0 16px;
+        }
+    </style>
+</head>
+<body style="height: 100%;width: 100%;margin: 0;padding: 0;">
+<canvas id="myCanvas" style="border:1px solid #d3d3d3;background: #F7F7F7;background: url('../image/bgp1.png');"></canvas>
+<img id="perfect" src="../image/perfect.png">
+<div class="ico" id="myIco">
+
+</div>
+</body>
+</html>

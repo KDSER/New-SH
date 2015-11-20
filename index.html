@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <script src="./script/jquery-2.0.0.js"></script>
+    <style type="text/css">
+        /*#page1{*/
+        /*background:url("../image/bgp.png") no-repeat fixed;*/
+        /*-moz-background-size:cover;*/
+        /*-ms-background-size:cover;*/
+        /*-webkit-background-size:cover;*/
+        /*background-size:cover;*/
+        /*background-repeat:no-repeat;*/
+        body{
+            margin: 0;
+        }
+        /*}*/
+        #bg{
+            position: absolute;
+            z-index: -1;
+        }
+        .mrg-go{
+            width: 180px;
+            height: 65px;
+            display: block;
+            margin: auto;
+            padding-top:370px;
+        }
+        #tip{
+            position: absolute;
+            top:45%;
+            width: 70%;
+            margin-left: 50px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#bg").css('width',document.documentElement.clientWidth);
+            $("#bg").css('height',document.documentElement.clientHeight);
+        })
+    </script>
+</head>
+<body>
+<div id="page1">
+    <img id="bg" src="./image/bgp.png">
+    <img id="tip" src="./image/square.png">
+    <img class="mrg-go" src="./image/bgp_btn.png" onclick="tiaozhuan()">
+</div>
+</body>
+</html>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    function tiaozhuan(){
+        api.openWin({
+            name: 'game',
+            url: './html/index.html',
+            reload:true
+        });
+    }
+</script>
